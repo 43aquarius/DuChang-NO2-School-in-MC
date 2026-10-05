@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>都昌二中 Minecraft 世界使用指南</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+
+:root {
+  --c-primary: #1a3c2a;      /* 森林绿·深 */
+  --c-secondary: #2d6b4a;    /* 主绿 */
+  --c-accent: #4a9a6a;       /* 亮绿强调 */
+  --c-fill: #d5ead8;         /* 浅绿填充 */
+  --c-bg: #f2f8f4;           /* 页面底色 */
+  --c-text: #24312a;
+  --c-muted: #66746c;
+  --c-border: #cfdfd4;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 720px;
+  background: #f2f8f4; /* 浅色页面底色：封面/结尾为自覆盖整页的深色块，避免内容页尾部露出深色 */
+  color: var(--c-text);
+  font-family: 'Noto Sans SC', 'NotoSansSC[wght]', sans-serif;
+  font-size: 15px;
+  line-height: 1.72;
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+@media screen {
+  html { height: auto; display: flex; justify-content: center; background: #f2f8f4; }
+  body { margin: 20px auto; box-shadow: 0 8px 40px rgba(0,0,0,.4); }
+}
+
+p, td, li { line-break: strict; text-align: justify; }
+img { max-width: 100%; height: auto; }
+
+/* ============ 封面 ============ */
+.cover {
+  width: 720px;
+  height: 1020px;
+  box-sizing: border-box;
+  break-after: page;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(160deg, #16321f 0%, #1a3c2a 55%, #21492f 100%);
+  color: #eef6f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px 62px;
+}
+.cover .pixel-grid {
+  position: absolute; inset: 0; z-index: 1;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+.cover .deco-sq {
+  position: absolute; z-index: 2; border-radius: 2px;
+}
+.cover .deco-sq.s1 { width: 86px; height: 86px; right: 70px; top: 88px; background: rgba(74,154,106,.16); }
+.cover .deco-sq.s2 { width: 42px; height: 42px; right: 168px; top: 132px; background: rgba(74,154,106,.10); }
+.cover .deco-sq.s3 { width: 24px; height: 24px; right: 92px; top: 196px; background: rgba(213,234,216,.14); }
+.cover .deco-ring {
+  position: absolute; z-index: 2; left: 46px; bottom: 118px;
+  width: 250px; height: 250px; border-radius: 50%;
+  border: 26px solid rgba(255,255,255,.045);
+}
+.cover-inner { position: relative; z-index: 5; }
+.cover .badge {
+  display: inline-block;
+  font-size: 11.5px; font-weight: 500; letter-spacing: 4px;
+  color: #a9d8bb; border: 1px solid rgba(169,216,187,.45);
+  padding: 7px 16px 6px 20px; border-radius: 3px; margin-bottom: 34px;
+}
+.cover h1 {
+  margin: 0 0 18px 0;
+  font-size: 64px; font-weight: 900; line-height: 1.16; letter-spacing: 2px;
+  color: #ffffff;
+}
+.cover h1 .light { color: #9fd6b4; }
+.cover .subtitle {
+  font-size: 19px; font-weight: 300; color: #cfe6d8;
+  letter-spacing: 2.5px; margin-bottom: 40px;
+}
+.cover .summary {
+  width: 520px;
+  font-size: 14.5px; font-weight: 300; line-height: 1.85;
+  color: rgba(238,246,240,.88);
+  border-left: 3px solid #4a9a6a;
+  padding-left: 18px; margin-bottom: 46px;
+}
+.cover .chips { display: flex; flex-wrap: wrap; gap: 10px; max-width: 100%; }
+.cover .chip {
+  flex: 0 1 auto; min-width: 80px; max-width: 100%;
+  font-size: 12px; font-weight: 500; letter-spacing: 1px;
+  color: #dcefe2; background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.16);
+  padding: 6px 14px; border-radius: 3px;
+  overflow-wrap: break-word;
+}
+.cover .edition {
+  position: absolute; z-index: 5; left: 62px; right: 62px; bottom: 46px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  font-size: 10.5px; letter-spacing: 2px; color: rgba(207,230,216,.55);
+  font-weight: 400;
+}
+
+/* ============ 正文流式容器 ============ */
+.main-content {
+  background: var(--c-bg);
+  padding: 56px 62px 44px 62px;
+}
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 26px; }
+.chapter-header:first-child { margin-top: 0; }
+.sec-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  color: var(--c-accent); margin-bottom: 8px;
+}
+.sec-title {
+  font-size: 27px; font-weight: 900; color: var(--c-primary);
+  line-height: 1.25; margin-bottom: 10px;
+}
+.divider {
+  width: 100%; height: 3px; margin-bottom: 18px;
+  background: linear-gradient(90deg, var(--c-secondary), var(--c-fill) 70%, transparent);
+  border-radius: 2px;
+}
+.body-text { margin: 0 0 14px 0; }
+.body-text b, .card b { color: var(--c-primary); font-weight: 700; }
+
+/* 统计卡片 */
+.stat-grid {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  max-width: 100%; margin: 6px 0 16px 0;
+  break-inside: avoid;
+}
+.stat-card {
+  flex: 1 1 auto; min-width: 178px; max-width: 100%;
+  box-sizing: border-box;
+  background: #ffffff; border: 1px solid var(--c-border);
+  border-top: 3px solid var(--c-secondary);
+  border-radius: 6px; padding: 13px 16px 11px 16px;
+  break-inside: avoid;
+}
+.stat-card .num {
+  font-size: 21px; font-weight: 900; color: var(--c-primary);
+  line-height: 1.2; letter-spacing: .5px;
+}
+.stat-card .num small { font-size: 12px; font-weight: 500; color: var(--c-muted); letter-spacing: 0; }
+.stat-card .lab {
+  font-size: 11.5px; color: var(--c-muted); letter-spacing: 1.5px; margin-top: 3px;
+}
+
+/* 图表容器 */
+figure.map-figure {
+  display: block; width: 100%; margin: 4px auto 16px auto;
+  break-inside: avoid;
+}
+figure.map-figure img {
+  display: block; width: 100%; max-height: 400px; object-fit: contain;
+  border: 1px solid var(--c-border); border-radius: 6px;
+}
+figure.map-figure figcaption {
+  font-size: 11.5px; color: var(--c-muted); text-align: center;
+  margin-top: 8px; letter-spacing: .5px; line-height: 1.6;
+}
+
+/* 步骤卡片 */
+.step {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: #ffffff; border: 1px solid var(--c-border);
+  border-radius: 6px; padding: 14px 16px; margin-bottom: 12px;
+  break-inside: avoid;
+}
+.step .no {
+  flex: 0 0 34px; width: 34px; height: 34px; border-radius: 4px;
+  background: var(--c-secondary); color: #ffffff;
+  font-size: 16px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.step .st-body { flex: 1 1 auto; min-width: 0; }
+.step .st-title {
+  font-size: 15.5px; font-weight: 700; color: var(--c-primary);
+  margin-bottom: 4px; line-height: 1.4;
+}
+.step .st-text { font-size: 13.5px; line-height: 1.68; color: var(--c-text); }
+.step code, .tip code, td code, .route code {
+  font-family: 'Sarasa Mono SC', 'Liberation Mono', 'NotoSansSC[wght]', monospace;
+  font-size: 12px; background: var(--c-fill);
+  padding: 1px 6px; border-radius: 3px; color: #1f4a33;
+  overflow-wrap: break-word; word-break: break-all;
+}
+
+/* 提示框 */
+.tip {
+  background: var(--c-fill); border-left: 4px solid var(--c-accent);
+  border-radius: 4px; padding: 13px 16px; margin: 2px 0 14px 0;
+  font-size: 13.5px; line-height: 1.7;
+  break-inside: avoid;
+}
+.tip .tip-t { font-weight: 700; color: var(--c-primary); margin-bottom: 3px; font-size: 13.5px; }
+
+/* 表格 */
+table.poi {
+  width: 100%; border-collapse: collapse; margin: 4px 0 14px 0;
+  font-size: 12.5px; background: #ffffff;
+  border: 1px solid var(--c-border); border-radius: 6px;
+  break-inside: avoid; page-break-inside: avoid;
+}
+table.poi thead { display: table-header-group; }
+table.poi th {
+  background: #e3f0e7; color: #1f4a33;
+  font-weight: 700; font-size: 12px; letter-spacing: 1px;
+  padding: 9px 10px; text-align: left; border-bottom: 2px solid var(--c-secondary);
+}
+table.poi td {
+  padding: 7.5px 10px; border-bottom: 1px solid #e4efe8;
+  vertical-align: top; line-height: 1.5;
+}
+table.poi tr { break-inside: avoid; }
+table.poi tr:last-child td { border-bottom: none; }
+table.poi tr:nth-child(odd) td { background: #f6fbf7; }
+table.poi td.mc { font-family: 'Sarasa Mono SC', 'Liberation Mono', monospace; font-size: 12px; color: #1f4a33; font-weight: 500; }
+table.poi td.tname { font-weight: 500; color: var(--c-primary); }
+table.poi td.kind { color: var(--c-muted); font-size: 11.5px; }
+
+/* 命令框 */
+.cmdbox {
+  background: #16321f; border-radius: 6px; margin: 4px 0 16px 0;
+  break-inside: avoid; overflow: hidden;
+}
+.cmdbox .cmd-title {
+  font-size: 11px; letter-spacing: 2px; color: #9fd6b4;
+  padding: 10px 16px 0 16px; font-weight: 500;
+}
+.cmdbox pre {
+  margin: 6px 0 14px 0; padding: 0 18px;
+  font-family: 'Sarasa Mono SC', 'Liberation Mono', monospace;
+  font-size: 12px; line-height: 1.75; color: #e2f3e8;
+  white-space: pre-wrap; overflow-wrap: break-word; word-break: break-all;
+}
+
+/* 路线卡片 */
+.route {
+  background: #ffffff; border: 1px solid var(--c-border);
+  border-left: 4px solid var(--c-secondary);
+  border-radius: 6px; padding: 13px 16px; margin-bottom: 12px;
+  break-inside: avoid;
+}
+.route .route-t { font-weight: 700; color: var(--c-primary); font-size: 14.5px; margin-bottom: 4px; }
+.route .route-text { font-size: 13.5px; line-height: 1.72; }
+
+/* ============ 结尾页 ============ */
+.ending {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-before: page; overflow: hidden; position: relative;
+  background: linear-gradient(200deg, #16321f 0%, #1a3c2a 60%, #21492f 100%);
+  color: #eef6f0;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 64px 62px;
+}
+.ending .pixel-grid {
+  position: absolute; inset: 0; z-index: 1;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+.end-inner { position: relative; z-index: 5; }
+.end-kicker {
+  font-size: 12px; letter-spacing: 5px; color: #9fd6b4;
+  font-weight: 500; margin-bottom: 22px;
+}
+.end-big {
+  font-size: 52px; font-weight: 900; line-height: 1.28;
+  color: #ffffff; margin-bottom: 30px; letter-spacing: 2px;
+}
+.end-line {
+  width: 96px; height: 4px; background: #4a9a6a; border-radius: 2px;
+  margin-bottom: 34px;
+}
+.end-credit { font-size: 13px; line-height: 2.0; color: rgba(238,246,240,.82); font-weight: 300; }
+.end-credit p { margin: 0; text-align: left; }
+.end-credit .end-links { margin-top: 14px; color: #9fd6b4; font-size: 12px; line-height: 1.9; letter-spacing: .5px; }
+</style>
+</head>
+<body>
+
+<!-- ================= 封面 ================= -->
+<div class="cover">
+  <div class="pixel-grid"></div>
+  <div class="deco-sq s1"></div>
+  <div class="deco-sq s2"></div>
+  <div class="deco-sq s3"></div>
+  <div class="deco-ring"></div>
+  <div class="cover-inner">
+    <div class="badge">ARNIS · 实景复刻世界</div>
+    <h1>都昌二中<br><span class="light">× Minecraft</span></h1>
+    <div class="subtitle">江西省九江市都昌县第二中学及周边街区 · 世界使用指南</div>
+    <div class="summary">
+      本指南配套一个由 Arnis v3.2.0 生成的 Java 版实景世界：以都昌县第二中学为中心，
+      覆盖县城约 1.5km × 1.5km 街区，按 1:1 比例还原真实道路、建筑与地形起伏。
+      内含安装步骤、坐标速查表、生成参数说明与基岩版转换方法。
+    </div>
+    <div class="chips">
+      <span class="chip">Java Edition 1.21.4</span>
+      <span class="chip">1:1 真实比例</span>
+      <span class="chip">3,421 栋建筑</span>
+      <span class="chip">创造模式</span>
+    </div>
+  </div>
+  <div class="edition">
+    <span>EDITION V1.0 · 2026.10</span>
+    <span>GITHUB.COM/43AQUARIUS/DUCHANG-NO2-SCHOOL-IN-MC</span>
+  </div>
+</div>
+
+<!-- ================= 正文 ================= -->
+<div class="main-content">
+<!-- 第 1 章 世界概览 -->
+<div class="chapter-header">
+  <div class="sec-tag">CHAPTER 01</div>
+  <div class="sec-title">世界概览</div>
+  <div class="divider"></div>
+</div>
+<p class="body-text">
+  本世界以<b>江西省都昌县第二中学</b>（北纬 29.2786°，东经 116.1998°）为中心，将周边约
+  1.5km × 1.5km 的县城街区完整复刻进 Minecraft Java 版。生成数据来自 OpenStreetMap
+  道路网络与 Overture Maps 建筑轮廓，其中该区域 OSM 建筑数据稀缺，世界依靠 Overture
+  补齐了 3,421 栋建筑；地形高程取自 Mapterhorn 数据集，区域内真实落差约 23.5 米，
+  与现实中的都昌县城地貌一致。世界为<b>创造模式</b>，周边区域铺设超平坦草原，
+  便于直接开展建造与参观。
+</p>
+<div class="stat-grid">
+  <div class="stat-card"><div class="num">1.21.4<small>+</small></div><div class="lab">游戏版本（向前兼容）</div></div>
+  <div class="stat-card"><div class="num">1500 × 1498</div><div class="lab">世界尺寸（方块）</div></div>
+  <div class="stat-card"><div class="num">3,421</div><div class="lab">建筑数量（OVERTURE）</div></div>
+</div>
+<div class="stat-grid">
+  <div class="stat-card"><div class="num">23.5 m</div><div class="lab">地形真实落差</div></div>
+  <div class="stat-card"><div class="num">748, -40, 748</div><div class="lab">出生点坐标（校内）</div></div>
+  <div class="stat-card"><div class="num">9</div><div class="lab">区域存档文件</div></div>
+</div>
+<p class="body-text">
+  都昌二中校园位于世界中部偏北，范围为 <b>X 646~887 / Z 509~964</b>，东西约 240 格、
+  南北约 455 格，对应现实中的校园与操场尺度。出生点被设定在校园中心附近，
+  进入世界后原地环视即可辨认教学楼群与田径场轮廓。县城主要干道（东风大道、万里大道、
+  县府路等）与次要街巷按真实走向铺设，路网向北衔接新妙湖大道，向南延伸至县城商业区，
+  可沿道路步行完整游览整个街区。
+</p>
+<figure class="map-figure">
+  <img src="assets/preview_640.jpg" alt="世界俯瞰预览">
+  <figcaption>世界俯瞰预览（北为上）：灰色为建筑群，绿色为植被，深色为水域，白色网格线间距 46 格</figcaption>
+</figure>
+
+<!-- 第 2 章 安装步骤 -->
+<div class="chapter-header">
+  <div class="sec-tag">CHAPTER 02</div>
+  <div class="sec-title">安装步骤（Java 版）</div>
+  <div class="divider"></div>
+</div>
+<p class="body-text">
+  世界采用 Java 版 Anvil 存档格式，数据版本为 1.21.4，可直接被 1.21.4 及更高版本读取。
+  整个安装过程无需任何模组或外部工具，五分钟内即可完成。请按以下顺序操作：
+</p>
+<div class="step">
+  <div class="no">1</div>
+  <div class="st-body">
+    <div class="st-title">确认游戏版本</div>
+    <div class="st-text">打开官方启动器，安装或选择 <code>1.21.4</code> 及以上版本的配置档案。世界未使用任何数据包与模组，无需额外加载项。</div>
+  </div>
+</div>
+<div class="step">
+  <div class="no">2</div>
+  <div class="st-body">
+    <div class="st-title">下载并解压存档</div>
+    <div class="st-text">下载 <code>DuchangErZhong_MC1.21.4_world.zip</code> 并解压，得到文件夹「都昌二中·Duchang Erzhong (Arnis)」。文件夹内含 <code>level.dat</code>、<code>region/</code> 等存档文件。</div>
+  </div>
+</div>
+<div class="step">
+  <div class="no">3</div>
+  <div class="st-body">
+    <div class="st-title">放入存档目录</div>
+    <div class="st-text">将整个文件夹移动到 Minecraft 存档目录：<br>
+    Windows <code>%appdata%\.minecraft\saves</code><br>
+    macOS <code>~/Library/Application Support/minecraft/saves</code><br>
+    Linux <code>~/.minecraft/saves</code></div>
+  </div>
+</div>
+<div class="step">
+  <div class="no">4</div>
+  <div class="st-body">
+    <div class="st-title">启动并进入世界</div>
+    <div class="st-text">启动游戏，在「单人游戏」列表中选择「都昌二中·Duchang Erzhong (Arnis)」并进入。首次加载约需十几秒解析 9 个区域文件。</div>
+  </div>
+</div>
+<div class="step">
+  <div class="no">5</div>
+  <div class="st-body">
+    <div class="st-title">查看出生点与全图地图</div>
+    <div class="st-text">出生点位于校内 <code>(748, -40, 748)</code>；物品栏自带一张已绘制完成的锁定地图，右键举起即可总览整个县城街区。</div>
+  </div>
+</div>
+<div class="tip">
+  <div class="tip-t">常见问题</div>
+  若世界未出现在列表中，请检查解压后是否多套了一层同名文件夹（确保 <code>level.dat</code> 直接位于世界文件夹内）；
+  若提示「世界由不兼容的版本创建」，说明当前游戏版本低于 1.21.4，请先升级再加载。
+</div>
+
+<!-- 第 3 章 坐标速查表 -->
+<div class="chapter-header">
+  <div class="sec-tag">CHAPTER 03</div>
+  <div class="sec-title">坐标速查表</div>
+  <div class="divider"></div>
+</div>
+<p class="body-text">
+  世界坐标系与地理坐标为线性对应：东经增大对应 <b>X 轴</b>（东）增大，北纬增大对应
+  <b>Z 轴</b>（南）减小，北为上。下表汇总了区域内 16 处命名地物的方块坐标，
+  已按出生点标定，与实际位置误差不超过 2 格。旅途中按 <code>F3</code> 打开调试屏可实时查看
+  当前坐标；也可以用指令 <code>/tp X Y Z</code> 直接传送到表中的任意位置（Y 可取地表附近的 -40）。
+</p>
+<div class="tip">
+  <div class="tip-t">换算公式（经纬度 → 方块坐标）</div>
+  <code>X ≈ (经度 − 116.192058) × 97,100</code>　
+  <code>Z ≈ (29.285382 − 纬度) × 111,319</code>　
+  结果四舍五入取整；两式均已含出生点校准偏移。
+</div>
+<table class="poi">
+  <thead>
+    <tr><th style="width:31%">地物名称</th><th style="width:17%">类型</th><th style="width:13%">MC X</th><th style="width:13%">MC Z</th><th style="width:26%">备注</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="tname">江西省都昌县第二中学</td><td class="kind">学校</td><td class="mc">748</td><td class="mc">748</td><td>出生点所在，校园 X 646~887</td></tr>
+    <tr><td class="tname">都昌县人民政府</td><td class="kind">政府</td><td class="mc">658</td><td class="mc">977</td><td>县府路南侧</td></tr>
+    <tr><td class="tname">天宇小学</td><td class="kind">学校</td><td class="mc">968</td><td class="mc">1036</td><td>县城东南文教区</td></tr>
+    <tr><td class="tname">天昊商城</td><td class="kind">商场</td><td class="mc">397</td><td class="mc">438</td><td>县城西北商业区</td></tr>
+    <tr><td class="tname">东风大道</td><td class="kind">干道</td><td class="mc">1192</td><td class="mc">824</td><td>贯穿县城的东西主干道</td></tr>
+    <tr><td class="tname">万里大道</td><td class="kind">主干道</td><td class="mc">1262</td><td class="mc">133</td><td>北部入城方向</td></tr>
+    <tr><td class="tname">新妙湖大道</td><td class="kind">次干道</td><td class="mc">1454</td><td class="mc">7</td><td>东北角，出城方向</td></tr>
+    <tr><td class="tname">县府路</td><td class="kind">支路</td><td class="mc">652</td><td class="mc">686</td><td>校园门前道路</td></tr>
+    <tr><td class="tname">县府北路</td><td class="kind">支路</td><td class="mc">549</td><td class="mc">85</td><td>县政府以北</td></tr>
+    <tr><td class="tname">白洋路</td><td class="kind">支路</td><td class="mc">184</td><td class="mc">862</td><td>县城西侧</td></tr>
+    <tr><td class="tname">人民路</td><td class="kind">支路</td><td class="mc">410</td><td class="mc">757</td><td>南北向街巷</td></tr>
+    <tr><td class="tname">小康路</td><td class="kind">支路</td><td class="mc">516</td><td class="mc">440</td><td>北部居住区</td></tr>
+    <tr><td class="tname">芙蓉路</td><td class="kind">支路</td><td class="mc">1139</td><td class="mc">584</td><td>东部城区</td></tr>
+    <tr><td class="tname">芙蓉南路</td><td class="kind">支路</td><td class="mc">1044</td><td class="mc">1112</td><td>南部延伸段</td></tr>
+    <tr><td class="tname">芙蓉山工业园</td><td class="kind">工业区</td><td class="mc">1483</td><td class="mc">60</td><td>东北角工业园片区</td></tr>
+    <tr><td class="tname">都昌县（城市标注）</td><td class="kind">标注</td><td class="mc">669</td><td class="mc">1072</td><td>县城中心参考点</td></tr>
+  </tbody>
+</table>
+<div class="tip">
+  <div class="tip-t">校园速览</div>
+  校园整体范围 <b>X 646~887 / Z 509~964</b>；从出生点向南可走到县府路与县城中心，
+  向东两百余格即达东风大道。世界四角坐标约为 (0,0)（西北）、(1500,0)（东北）、
+  (0,1498)（西南）、(1500,1498)（东南）。
+</div>
+
+<!-- 第 4 章 生成参数说明 -->
+<div class="chapter-header">
+  <div class="sec-tag">CHAPTER 04</div>
+  <div class="sec-title">生成参数说明</div>
+  <div class="divider"></div>
+</div>
+<p class="body-text">
+  世界由开源工具 <b>Arnis v3.2.0</b>（github.com/louis-e/arnis）在命令行模式下生成。
+  生成范围（bbox）取都昌二中为中心的矩形区域，比例尺设为 1 格 = 1 米，周边环境选择
+  超平坦草原以获得干净的游览边界。完整命令与各项参数含义如下，可据此复现或调整范围重新生成：
+</p>
+<div class="cmdbox">
+<div class="cmd-title">生成命令（Arnis v3.2.0 · CLI）</div>
+<pre>./arnis \
+  --output-dir &lt;世界输出目录&gt; \
+  --bbox "29.271910,116.192058,29.285382,116.207529" \
+  --world-type flat \
+  --spawn-lat 29.2786462 --spawn-lng 116.1997824 \
+  --scale 1.0 \
+  --map-preview</pre>
+</div>
+<table class="poi">
+  <thead>
+    <tr><th style="width:34%">参数</th><th style="width:66%">作用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="mc">--bbox</td><td>生成范围（最小纬度,最小经度,最大纬度,最大经度），即都昌县城约 1.5km 见方街区</td></tr>
+    <tr><td class="mc">--scale 1.0</td><td>世界比例尺：1 方块 = 1 米，建筑与道路按真实尺寸还原</td></tr>
+    <tr><td class="mc">--world-type flat</td><td>生成区域之外铺设超平坦草原，避免「虚空孤岛」观感</td></tr>
+    <tr><td class="mc">--spawn-lat / --spawn-lng</td><td>出生点地理坐标，精确设在学校中心（对应方块 748, 748）</td></tr>
+    <tr><td class="mc">--overture（默认开启）</td><td>从 Overture Maps 补齐 OSM 缺失的建筑轮廓，本区域共补入 3,421 栋</td></tr>
+    <tr><td class="mc">--map-preview</td><td>渲染世界俯瞰预览图（即本指南第 1 章插图）</td></tr>
+    <tr><td class="mc">--mode geo-terrain（默认）</td><td>真实高程地形 + OSM 地物模式，带来 23.5 米地形起伏</td></tr>
+  </tbody>
+</table>
+<p class="body-text">
+  数据来源共六类：道路与地物取自 OpenStreetMap 瓦片档案（tiles.arnisproject.com）；
+  建筑轮廓由 Overture Maps 补齐；地形高程来自 Mapterhorn 全球地形瓦片；
+  地表覆盖参考 ESA WorldCover 2021；植被冠层高度取自 Meta/WRI 全球冠层数据，
+  树木种类按「长江平原常绿阔叶林」生态区自动配置了 22 个群落共 497 种区域树木。
+</p>
+
+<!-- 第 5 章 Java→基岩版转换 -->
+<div class="chapter-header">
+  <div class="sec-tag">CHAPTER 05</div>
+  <div class="sec-title">Java → 基岩版转换</div>
+  <div class="divider"></div>
+</div>
+<p class="body-text">
+  本存档为 Java 版格式，手机（Android/iOS）与 Windows 10/11 基岩版无法直接读取，
+  需要先转换为 <code>.mcworld</code> 格式。推荐两条经过广泛验证的转换路线：
+  在线工具 <b>Chunker</b> 适合快速转换（免安装、自动处理方块映射），桌面工具
+  <b>Amulet</b> 适合需要批量或离线操作的用户。转换前请先解压 zip 得到世界文件夹。
+</p>
+<div class="route">
+  <div class="route-t">路线 A · Chunker 在线转换（推荐）</div>
+  <div class="route-text">
+    ① 浏览器打开 <code>chunker.app</code>；② 点击「Upload」上传整个世界文件夹（或将其压缩为 zip 后上传）；
+    ③ 平台选择 <code>Bedrock</code>，目标版本保持默认的最新稳定版；④ 点击「Convert」等待转换完成；
+    ⑤ 下载得到 <code>.mcworld</code> 文件。全程约 1~3 分钟，方块与实体自动映射为基岩版等价物。
+  </div>
+</div>
+<div class="route">
+  <div class="route-t">路线 B · Amulet Map Editor 桌面转换</div>
+  <div class="route-text">
+    ① 从 <code>amuletmc.com</code> 下载并安装 Amulet；② 打开 Java 世界文件夹；
+    ③ 使用「Convert」功能导出为 Bedrock 世界；④ 将导出文件夹后缀改为 <code>.mcworld</code>（或直接压缩为 zip 后改名）。
+    Amulet 支持更细粒度的坐标与方块映射选项，适合高级用户。
+  </div>
+</div>
+<div class="route">
+  <div class="route-t">导入基岩版</div>
+  <div class="route-text">
+    将 <code>.mcworld</code> 文件发送到手机或电脑后直接双击（或用「打开方式」选择 Minecraft），
+    游戏会自动导入并出现在世界列表。导入后出生点、地图与地形保持一致；
+    个别 Java 版专属方块（如特定告示牌细节）会替换为基岩版近似方块，整体观感不受影响。
+  </div>
+</div>
+<div class="tip">
+  <div class="tip-t">提示</div>
+  基岩版生成也可由 Arnis 原生完成（<code>--bedrock</code> 参数直接输出 .mcworld），
+  但重生成不会保留本存档的世界名称与出生点设定，转换现有存档仍是迁移的最稳妥方式。
+</div>
+</div>
+
+<!-- ================= 结尾页 ================= -->
+<div class="ending">
+  <div class="pixel-grid"></div>
+  <div class="end-inner">
+    <div class="end-kicker">SEE YOU AT SPAWN</div>
+    <div class="end-big">玩得开心，<br>课间见。</div>
+    <div class="end-line"></div>
+    <div class="end-credit">
+      <p>地图数据 © OpenStreetMap 贡献者（ODbL 许可）· 建筑轮廓来自 Overture Maps</p>
+      <p>世界由 Arnis v3.2.0 生成 · 指南与仓库由 43aquaris 整理</p>
+      <p class="end-links">github.com/43aquaris/DuChang-NO2-School-in-MC<br>github.com/louis-e/arnis</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

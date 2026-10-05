@@ -1,0 +1,48 @@
+======================================================
+ 都昌二中 · Minecraft 实景复刻世界（Java 版）
+ Duchang Erzhong MC World - Installation Notes
+======================================================
+
+【基本信息】
+· 世界名称：都昌二中·Duchang Erzhong (Arnis)
+· 游戏版本：Minecraft Java Edition 1.21.4 及以上（向前兼容，无需模组/数据包）
+· 游戏模式：创造模式
+· 世界比例：1:1（1 方块 = 1 米）
+· 覆盖范围：江西省九江市都昌县县城约 1.5km × 1.5km
+  （bbox: 29.271910,116.192058 ~ 29.285382,116.207529）
+· 建筑数量：3,421 栋（Overture Maps 补齐）
+· 地形落差：23.5 米（Mapterhorn 真实高程）
+· 出生点：748, -40, 748（校园内，物品栏自带全图锁定地图）
+· 校园范围：X 646~887 / Z 509~964
+· 世界四角：西北(0,0) 东北(1500,0) 西南(0,1498) 东南(1500,1498)
+
+【安装步骤】
+1. 确认已安装 Minecraft Java 1.21.4 或更高版本；
+2. 解压 DuchangErZhong_MC1.21.4_world.zip，
+   得到文件夹「都昌二中·Duchang Erzhong (Arnis)」；
+3. 将该文件夹放入存档目录：
+     Windows: %appdata%\.minecraft\saves
+     macOS:   ~/Library/Application Support/minecraft/saves
+     Linux:   ~/.minecraft/saves
+4. 启动游戏 → 单人游戏 → 选择该世界进入；
+5. 出生即在校内，举起物品栏中的地图可总览全县城街区。
+
+【常见问题】
+· 世界未出现在列表：检查是否多套了一层文件夹，
+  level.dat 必须直接位于世界文件夹内；
+· 提示版本不兼容：请先升级游戏至 1.21.4 或更高；
+· 坐标查询：游戏中按 F3 打开调试屏；可用 /tp 748 -40 748 传送回出生点。
+
+【基岩版（手机/Win10）】
+需先转换为 .mcworld 格式：推荐 chunker.app 在线上传转换，
+或使用 Amulet Map Editor 桌面转换；转换后双击 .mcworld 即可导入。
+详见《都昌二中MC世界使用指南.pdf》第 5 章。
+
+【数据与工具致谢】
+· 世界生成：Arnis v3.2.0 (github.com/louis-e/arnis)
+· 地图数据：© OpenStreetMap contributors (ODbL)
+· 建筑轮廓：Overture Maps
+· 地形高程：Mapterhorn；地表覆盖：ESA WorldCover 2021
+
+· 仓库：github.com/43aquaris/DuChang-NO2-School-in-MC
+======================================================
